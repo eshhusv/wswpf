@@ -1,0 +1,35 @@
+﻿<Window x:Class="wswpf.PatientsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wswpf"
+        mc:Ignorable="d"
+        Title="PatientsListWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Name="PatientsList" Margin="10" FontSize="24">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Doctor_ID}">Доктор</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Anamnesis}">Анамнез</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symptoms_details}">Описание симптоматики</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Diagnosis}">Диагноз</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recomendations}">Рекомендации по лечению</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe}">ID рецепта</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Referral_for_consultation}">Формирование направления</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Instrumental_or_laboratory_tests}">Исследования</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Procedures}">Процедуры</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</Window>
