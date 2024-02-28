@@ -5,31 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wswpf"
         mc:Ignorable="d"
-        Title="PatientsListWindow" Height="1080" Width="1920">
+        Title="PatientsListWindow" Height="1080" Width="1920" WindowState="Maximized">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0.5*"/>
-        </Grid.ColumnDefinitions>
-        <ListView Name="PatientsList" Margin="10" FontSize="24">
+        <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Doctor_ID}">Доктор</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Anamnesis}">Анамнез</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symptoms_details}">Описание симптоматики</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Diagnosis}">Диагноз</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recomendations}">Рекомендации по лечению</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe}">ID рецепта</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Referral_for_consultation}">Формирование направления</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Instrumental_or_laboratory_tests}">Исследования</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Procedures}">Процедуры</GridViewColumn>
+                    <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=AppointmentId}">Доктор</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIODoctor}" Width="100">Доктор</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIOPatient}" Width="100">Пациент</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Anamnesis}" Width="120">Анамнез</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SymptomsDetails}" Width="300">Описание симптоматики</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Diagnosis}" Width="200">Диагноз</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recomendations}" Width="500">Рекомендации по лечению</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ReferralForConsultation}" Width="300">Формирование направления</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=InstrumentalOrLaboratoryTests}" Width="300">Исследования</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Procedures}" Width="auto">Процедуры</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-        </Grid>
     </Grid>
 </Window>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class Table1
+public partial class Reception
 {
     public int PatientId { get; set; }
 
@@ -15,7 +15,7 @@ public partial class Table1
 
     public string Recomendations { get; set; } = null!;
 
-    public string DoctorId { get; set; } = null!;
+    public int DoctorId { get; set; }
 
     public int AppointmentId { get; set; }
 

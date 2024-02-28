@@ -27,7 +27,7 @@ public partial class ClinicContext : DbContext
 
     public virtual DbSet<Recipe> Recipes { get; set; }
 
-    public virtual DbSet<Table1> Table1s { get; set; }
+    public virtual DbSet<Reception> Receptions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -191,11 +191,11 @@ public partial class ClinicContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<Table1>(entity =>
+        modelBuilder.Entity<Reception>(entity =>
         {
             entity.HasKey(e => e.AppointmentId);
 
-            entity.ToTable("Table_1");
+            entity.ToTable("Reception");
 
             entity.Property(e => e.AppointmentId)
                 .ValueGeneratedNever()

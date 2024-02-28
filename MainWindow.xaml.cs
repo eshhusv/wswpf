@@ -15,7 +15,6 @@ namespace wswpf
 {
     public partial class MainWindow : Window
     {
-        MainWindow mainWindow;
 
         public MainWindow()
         {

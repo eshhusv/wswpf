@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using wswpf.Models;
 
 namespace wswpf
 {
@@ -22,6 +23,27 @@ namespace wswpf
         public PatientsListWindow()
         {
             InitializeComponent();
+            using (ClinicContext db = new ClinicContext())
+            {
+                var listReception = db.Receptions.Select(p => new
+                {
+                    Anamnesis = p.Anamnesis,
+                    FIODoctor = db.Doctors.Where(d => d.DoctorId == p.DoctorId).FirstOrDefault()!.DoctorName,
+                    DoctorId = p.DoctorId,
+                    PatientId = p.PatientId,
+                    FIOPatient = db.Patients.Where(pat => pat.PatientId == p.PatientId).FirstOrDefault()!.Firstname,
+                    SymptomsDetails = p.SymptomsDetails,
+                    Diagnosis = p.Diagnosis,
+                    Recomendations = p.Recomendations,
+                    AppointmentId = p.AppointmentId,
+                    ReferralForConsultation = p.ReferralForConsultation,
+                    InstrumentalOrLaboratoryTests = p.InstrumentalOrLaboratoryTests,
+                    Procedures = p.Procedures
+                });
+
+                PatientsList.ItemsSource = listReception.ToList();
+            }
         }
     }
-}
+ }
+
