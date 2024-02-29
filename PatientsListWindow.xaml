@@ -7,12 +7,36 @@
         mc:Ignorable="d"
         Title="PatientsListWindow" Height="1080" Width="1920" WindowState="Maximized">
     <Grid>
-        <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="Введите ФИО пациента" FontSize="14"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="PatientFullName_TextBox" Margin="5"/>
+            <Button Grid.Row="2" Grid.Column="1" x:Name="FindByFullName" Content="Найти по ФИО" Margin="5" Click="FindByFullName_Click"/>
+            
+        </Grid>
+        <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=AppointmentId}">Доктор</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIODoctor}" Width="100">Доктор</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=FIOPatient}" Width="100">Пациент</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DoctorId}" Width="100">Доктор</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PatientId}" Width="100">Пациент</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Anamnesis}" Width="120">Анамнез</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=SymptomsDetails}" Width="300">Описание симптоматики</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Diagnosis}" Width="200">Диагноз</GridViewColumn>

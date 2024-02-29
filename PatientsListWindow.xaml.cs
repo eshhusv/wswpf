@@ -44,6 +44,29 @@ namespace wswpf
                 PatientsList.ItemsSource = listReception.ToList();
             }
         }
+
+        private void FindByFullName_Click(object sender, RoutedEventArgs e)
+        {
+            using(ClinicContext db = new())
+            {
+                Patient p = db.Patients.Where(p => p.Surname + " " + p.Firstname + " " + p.Lastname == PatientFullName_TextBox.Text).FirstOrDefault()!;
+                var list = db.Receptions.Select(l => new
+                {
+                    AppointmentId = l.AppointmentId,
+                    DoctorId = l.DoctorId,
+                    PatientId = l.PatientId,
+                    Anamnesis = l.Anamnesis,
+                    SymptomsDetails = l.SymptomsDetails,
+                    Diagnosis = l.Diagnosis,
+                    Recomendations = l.Recomendations,
+                    ReferralForConsultation = l.ReferralForConsultation,
+                    InstrumentalOrLaboratoryTests = l.InstrumentalOrLaboratoryTests,
+                    Procedures = l.Procedures
+                }).Where(c=>c.PatientId==p.PatientId);
+                PatientsList.ItemsSource = null;
+                PatientsList.ItemsSource = list.ToList();
+            }
+        }
     }
  }
 
