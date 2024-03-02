@@ -24,9 +24,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"/>
         <Label Grid.Row="2" Grid.Column="1" Content="Логин" FontSize="18"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Name="login"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Name="login" FontSize="20" Text="zov2014"/>
         <Label Grid.Row="4" Grid.Column="1" Content="Пароль" FontSize="18"/>
-        <PasswordBox Grid.Row="5" Grid.Column="1" Margin="10" Name="password"/>
+        <PasswordBox Grid.Row="5" Grid.Column="1" Margin="10" Name="password" FontSize="20" Password="qwertyzov2014"/>
         <Button Grid.Row="6" Grid.Column="1" Margin="50 10" Content="Вход" FontSize="24" Click="Button_Click"/>
     </Grid>
 </Window>

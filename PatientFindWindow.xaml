@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wswpf"
         mc:Ignorable="d"
-        Title="PatientFindWindow" Height="250" Width="280">
+        Title="PatientFindWindow" Height="350" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -20,7 +20,14 @@
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="1" Grid.Column="1" Content="Введите номер медицинской карты" FontSize="10" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="10"/>
-        <Button Grid.Row="3" Grid.Column="1" x:Name="FindPatientButton" Content="Найти" Margin="20 15" Click="FindPatientButton_Click"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10 20" FontSize="20" x:Name="tbCard"/>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Найти" Margin="20 15" Click="FindPatientButton_Click"/>
+            <Button Grid.Column="1" Content="Отмена" Margin="20 15" Click="Button_Click" />
+        </Grid>
     </Grid>
 </Window>

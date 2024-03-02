@@ -26,8 +26,10 @@ namespace wswpf
             using (ClinicContext db = new())
             {
                 Doctor? doctor = db.Doctors.Where(d => d.DoctorLogin == login.Text && d.DoctorPassword == password.Password).FirstOrDefault();
-                PatientsListWindow patientsListWindows = new();
+                PatientsListWindow patientsListWindows = new(doctor);
                 patientsListWindows.Show();
+                MainWindow mainWindow = this;
+                mainWindow.Hide();
             }
         }
     }

@@ -11,30 +11,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using wswpf.Models;
 
 namespace wswpf
 {
     /// <summary>
-    /// Логика взаимодействия для PatientFindWindow.xaml
+    /// Логика взаимодействия для PatientEditWindow.xaml
     /// </summary>
-    public partial class PatientFindWindow : Window
+    public partial class PatientEditWindow : Window
     {
-        public PatientFindWindow()
+        public PatientEditWindow(int index)
         {
             InitializeComponent();
-        }
-        public string MedicalCard
-        {
-            get { return tbCard.Text; }
-        }
-        private void FindPatientButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
+            using (ClinicContext db=new ClinicContext())
+            {
+                Reception? reception = db.Receptions.Where(p => p.AppointmentId == index).FirstOrDefault();
+
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false;
+
         }
     }
 }

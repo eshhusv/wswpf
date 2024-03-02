@@ -18,7 +18,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
@@ -29,9 +28,9 @@
             <Label Grid.Row="0" Grid.Column="1" Content="Введите ФИО пациента" FontSize="14"/>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="PatientFullName_TextBox" Margin="5"/>
             <Button Grid.Row="2" Grid.Column="1" x:Name="FindByFullName" Content="Найти по ФИО" Margin="5" Click="FindByFullName_Click"/>
-            
+            <Button Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" x:Name="FindByQR" Content="Найти по QR" Margin="5" Click="FindByQR_Click"/>
         </Grid>
-        <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False" Grid.Row="1">
+        <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False" Grid.Row="1" MouseDoubleClick="PatientsList_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=AppointmentId}">Доктор</GridViewColumn>
@@ -40,8 +39,8 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Anamnesis}" Width="120">Анамнез</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=SymptomsDetails}" Width="300">Описание симптоматики</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Diagnosis}" Width="200">Диагноз</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recomendations}" Width="500">Рекомендации по лечению</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ReferralForConsultation}" Width="300">Формирование направления</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Recomendations}" Width="400">Рекомендации по лечению</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ReferralForConsultation}" Width="200">Формирование направления</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=InstrumentalOrLaboratoryTests}" Width="300">Исследования</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Procedures}" Width="auto">Процедуры</GridViewColumn>
                 </GridView>

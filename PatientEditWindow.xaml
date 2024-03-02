@@ -1,0 +1,114 @@
+﻿<Window x:Class="wswpf.PatientEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wswpf"
+        mc:Ignorable="d"
+        Title="PatientEditWindow" Height="590" Width="1920">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView Margin="5">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=AppointmentId}"></GridViewColumn>
+                            <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                            <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=Dosage}"></GridViewColumn>
+                            <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                            <GridViewColumn Width="0" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.01*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.01*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Анамнез" FontSize="16"/>
+                        <TextBox x:Name="Anamnesis" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Описание симптоматики" FontSize="16"/>
+                        <TextBox x:Name="SymptomsDetails" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Диагноз" FontSize="16"/>
+                        <TextBox x:Name="Diagnosis" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Рекомендации по лечению" FontSize="16"/>
+                        <TextBox x:Name="Recomendations" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Формирование направления" FontSize="16"/>
+                        <TextBox x:Name="ReferralForConsultation" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Исследования" FontSize="16"/>
+                        <TextBox x:Name="InstrumentalOrLaboratoryTests" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Процедуры" FontSize="16"/>
+                        <TextBox x:Name="Procedures" Grid.Row="1" Margin="5"/>
+                    </Grid>
+                    <Grid Grid.Column="7" Grid.RowSpan="1">
+                        <Button Content="Спаси и сохрани" Margin="30 10" FontSize="14"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>
