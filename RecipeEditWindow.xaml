@@ -1,0 +1,48 @@
+﻿<Window x:Class="wswpf.RecipeEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wswpf"
+        mc:Ignorable="d"
+        Title="RecipeEditWindow" Height="450" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.05*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Название"/>
+            <TextBox Grid.Row="1" Margin="5"/>
+            <Label Grid.Row="2" Content="Дозировка"/>
+            <TextBox Grid.Row="3" Margin="5"/>
+            <Label Grid.Row="4" Content="Формат приёма"/>
+            <TextBox Grid.Row="5" Margin="5"/>
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="DeleteRecipe" Content="Удалить" FontSize="16" Margin="10" Click="DeleteRecipe_Click"/>
+                <Button Grid.Column="2" x:Name="SaveRecipe" Content="Сохранить" FontSize="16" Margin="10" Click="SaveRecipe_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -27,8 +27,10 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Content="Введите ФИО пациента" FontSize="14"/>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="PatientFullName_TextBox" Margin="5"/>
-            <Button Grid.Row="2" Grid.Column="1" x:Name="FindByFullName" Content="Найти по ФИО" Margin="5" Click="FindByFullName_Click"/>
-            <Button Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" x:Name="FindByQR" Content="Найти по QR" Margin="5" Click="FindByQR_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" x:Name="FindByFullName" Content="Найти по ФИО" Margin="5" Click="FindByFullName_Click" FontSize="18"/>
+            <Label Grid.Row="0" Grid.Column="3" Content="Введите ФИО пациента" FontSize="14"/>
+            <TextBox Grid.Row="1" Grid.Column="3" x:Name="PatientMedicalCard_TextBox" Margin="5"/>
+            <Button Grid.Row="2" Grid.Column="3" x:Name="FindByQR" Content="Найти по номеру медицинской карты" Margin="5" Click="FindByQR_Click" FontSize="18"/>
         </Grid>
         <ListView Name="PatientsList" Margin="15" FontSize="18" IsManipulationEnabled="False" Grid.Row="1" MouseDoubleClick="PatientsList_MouseDoubleClick">
             <ListView.View>

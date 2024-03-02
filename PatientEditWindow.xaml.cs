@@ -20,9 +20,10 @@ namespace wswpf
     /// </summary>
     public partial class PatientEditWindow : Window
     {
-        public PatientEditWindow(int index)
+        public PatientEditWindow(int index, Doctor doctor)
         {
             InitializeComponent();
+            DoctorSignature.Text = doctor.DoctorName;
             using (ClinicContext db=new ClinicContext())
             {
                 Reception? reception = db.Receptions.Where(p => p.AppointmentId == index).FirstOrDefault();
@@ -31,6 +32,21 @@ namespace wswpf
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void AddRecipe_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveReception_Click(object sender, RoutedEventArgs e)
         {
 
         }
