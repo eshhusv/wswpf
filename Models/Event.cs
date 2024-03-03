@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class Event
+public class Event
 {
     public int EventId { get; set; }
 

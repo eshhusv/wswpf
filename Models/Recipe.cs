@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class Recipe
+public class Recipe
 {
     public int Id { get; set; }
 
@@ -14,4 +14,6 @@ public partial class Recipe
     public string Format { get; set; } = null!;
 
     public int AppointmentId { get; set; }
+
+    public virtual Reception Appointment { get; set; } = null!;
 }

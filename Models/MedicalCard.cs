@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class MedicalCard
+public class MedicalCard
 {
     public string MedicalCardId { get; set; } = null!;
 

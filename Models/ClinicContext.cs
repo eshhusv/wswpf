@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace wswpf.Models;
 
-public partial class ClinicContext : DbContext
+public class ClinicContext : DbContext
 {
     public ClinicContext()
     {
@@ -25,18 +25,16 @@ public partial class ClinicContext : DbContext
 
     public virtual DbSet<Patient> Patients { get; set; }
 
-    public virtual DbSet<Recipe> Recipes { get; set; }
-
     public virtual DbSet<Reception> Receptions { get; set; }
+
+    public virtual DbSet<Recipe> Recipes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=teacher209;Initial Catalog=Clinic;User ID=user1;Password=12345;Encrypt=False;Trust Server Certificate=True;MultiSubnetFailover=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-VOSGIAN;Initial Catalog=Clinic;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
-
         modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("PK_Doctor_1");
@@ -144,17 +142,13 @@ public partial class ClinicContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .IsFixedLength();
-            entity.Property(e => e.Firstname)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Firstname).HasMaxLength(50);
             entity.Property(e => e.Gender)
                 .HasMaxLength(7)
                 .IsFixedLength();
             entity.Property(e => e.InsurancePolicy).HasColumnName("Insurance_policy");
             entity.Property(e => e.InsurancePolicyExpireDate).HasColumnName("Insurance_policy_expire_date");
-            entity.Property(e => e.Lastname)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Lastname).HasMaxLength(50);
             entity.Property(e => e.MedicalCard)
                 .HasMaxLength(10)
                 .IsFixedLength()
@@ -167,9 +161,7 @@ public partial class ClinicContext : DbContext
                 .HasMaxLength(11)
                 .IsFixedLength()
                 .HasColumnName("Phone_number");
-            entity.Property(e => e.Surname)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.Surname).HasMaxLength(50);
 
             entity.HasOne(d => d.MedicalCardNavigation).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.MedicalCard)
@@ -177,41 +169,20 @@ public partial class ClinicContext : DbContext
                 .HasConstraintName("FK_Patient_Medical_card");
         });
 
-        modelBuilder.Entity<Recipe>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK_Appointment");
-
-            entity.ToTable("Recipe");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
-            entity.Property(e => e.AppointmentId).HasColumnName("Appointment_ID");
-            entity.Property(e => e.Format).HasMaxLength(50);
-            entity.Property(e => e.Name).HasMaxLength(50);
-        });
-
         modelBuilder.Entity<Reception>(entity =>
         {
-            entity.HasKey(e => e.AppointmentId);
+            entity.HasKey(e => e.AppointmentId).HasName("PK_Table_1");
 
             entity.ToTable("Reception");
 
-            entity.Property(e => e.AppointmentId)
-                .ValueGeneratedNever()
-                .HasColumnName("Appointment_ID");
+            entity.Property(e => e.AppointmentId).HasColumnName("Appointment_ID");
             entity.Property(e => e.Anamnesis).HasMaxLength(50);
             entity.Property(e => e.Diagnosis).HasMaxLength(50);
-            entity.Property(e => e.DoctorId)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("Doctor_ID");
+            entity.Property(e => e.DoctorId).HasColumnName("Doctor_ID");
             entity.Property(e => e.InstrumentalOrLaboratoryTests)
                 .HasMaxLength(50)
                 .HasColumnName("Instrumental_or_laboratory_tests");
-            entity.Property(e => e.PatientId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("Patient_ID");
+            entity.Property(e => e.PatientId).HasColumnName("Patient_ID");
             entity.Property(e => e.Procedures).HasMaxLength(50);
             entity.Property(e => e.Recomendations).HasMaxLength(50);
             entity.Property(e => e.ReferralForConsultation)
@@ -220,10 +191,33 @@ public partial class ClinicContext : DbContext
             entity.Property(e => e.SymptomsDetails)
                 .HasMaxLength(50)
                 .HasColumnName("Symptoms_details");
+
+            entity.HasOne(d => d.Doctor).WithMany(p => p.Receptions)
+                .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reception_Doctor");
+
+            entity.HasOne(d => d.Patient).WithMany(p => p.Receptions)
+                .HasForeignKey(d => d.PatientId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reception_Patient");
         });
 
-        OnModelCreatingPartial(modelBuilder);
-    }
+        modelBuilder.Entity<Recipe>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Appointment");
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+            entity.ToTable("Recipe");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.AppointmentId).HasColumnName("Appointment_ID");
+            entity.Property(e => e.Format).HasMaxLength(50);
+            entity.Property(e => e.Name).HasMaxLength(50);
+
+            entity.HasOne(d => d.Appointment).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.AppointmentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Recipe_Reception");
+        });
+    }
 }

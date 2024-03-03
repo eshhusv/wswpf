@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace wswpf
 {
-    /// <summary>
-    /// Логика взаимодействия для PatientFindWindow.xaml
-    /// </summary>
     public partial class PatientFindWindow : Window
     {
         public PatientFindWindow()

@@ -29,19 +29,19 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Название"/>
-            <TextBox Grid.Row="1" Margin="5"/>
+            <TextBox Grid.Row="1" Margin="5" Name="tbName"/>
             <Label Grid.Row="2" Content="Дозировка"/>
-            <TextBox Grid.Row="3" Margin="5"/>
+            <TextBox Grid.Row="3" Margin="5" Name="tbDosage"/>
             <Label Grid.Row="4" Content="Формат приёма"/>
-            <TextBox Grid.Row="5" Margin="5"/>
+            <TextBox Grid.Row="5" Margin="5" Name="tbFormat"/>
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="DeleteRecipe" Content="Удалить" FontSize="16" Margin="10" Click="DeleteRecipe_Click"/>
-                <Button Grid.Column="2" x:Name="SaveRecipe" Content="Сохранить" FontSize="16" Margin="10" Click="SaveRecipe_Click"/>
+                <Button x:Name="DeleteRecipe" Content="Ок" FontSize="16" Margin="10" Click="SaveRecipe_Click"/>
+                <Button Grid.Column="2" x:Name="SaveRecipe" Content="Отмена" FontSize="16" Margin="10" Click="Cancel_Click"/>
             </Grid>
         </Grid>
     </Grid>

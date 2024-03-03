@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class Doctor
+public class Doctor
 {
     public int DoctorId { get; set; }
 
@@ -14,4 +14,6 @@ public partial class Doctor
     public string DoctorPassword { get; set; } = null!;
 
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
+    public virtual ICollection<Reception> Receptions { get; set; } = new List<Reception>();
 }

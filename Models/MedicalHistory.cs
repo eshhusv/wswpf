@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class MedicalHistory
+public class MedicalHistory
 {
     public int MedicalHistoryId { get; set; }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace wswpf.Models;
 
-public partial class Patient
+public class Patient
 {
     public int PatientId { get; set; }
 
@@ -34,4 +34,6 @@ public partial class Patient
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
     public virtual MedicalCard MedicalCardNavigation { get; set; } = null!;
+
+    public virtual ICollection<Reception> Receptions { get; set; } = new List<Reception>();
 }

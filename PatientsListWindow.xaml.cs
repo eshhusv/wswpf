@@ -15,9 +15,6 @@ using wswpf.Models;
 
 namespace wswpf
 {
-    /// <summary>
-    /// Логика взаимодействия для PatientsListWindow.xaml
-    /// </summary>
     public partial class PatientsListWindow : Window
     {
         private Doctor doctor;
@@ -25,6 +22,7 @@ namespace wswpf
         {
             InitializeComponent();
             this.doctor = doctor;
+            LoadUpdate();
         }
         private void LoadUpdate()
         {
@@ -51,7 +49,7 @@ namespace wswpf
 
         private void FindByFullName_Click(object sender, RoutedEventArgs e)
         {
-            using(ClinicContext db = new())
+            using (ClinicContext db = new())
             {
                 Patient p = db.Patients.Where(p => p.Surname + " " + p.Firstname + " " + p.Lastname == PatientFullName_TextBox.Text).FirstOrDefault()!;
                 var list = db.Receptions.Select(l => new
@@ -66,36 +64,13 @@ namespace wswpf
                     ReferralForConsultation = l.ReferralForConsultation,
                     InstrumentalOrLaboratoryTests = l.InstrumentalOrLaboratoryTests,
                     Procedures = l.Procedures
-                }).Where(c=>c.PatientId==p.PatientId&&c.DoctorId==doctor.DoctorId);
+                }).Where(c => c.PatientId == p.PatientId && c.DoctorId == doctor.DoctorId);
                 PatientsList.ItemsSource = list.ToList();
             }
         }
 
         private void FindByQR_Click(object sender, RoutedEventArgs e)
         {
-            //PatientFindWindow patientFindWindow = new();
-            //if (patientFindWindow.ShowDialog() == true)
-            //{
-            //    string medicalCard = patientFindWindow.MedicalCard;
-            //    using (ClinicContext db = new())
-            //    {
-            //        Patient p = db.Patients.Where(p => p.MedicalCard==medicalCard).FirstOrDefault()!;
-            //        var list = db.Receptions.Select(l => new
-            //        {
-            //            AppointmentId = l.AppointmentId,
-            //            DoctorId = l.DoctorId,
-            //            PatientId = l.PatientId,
-            //            Anamnesis = l.Anamnesis,
-            //            SymptomsDetails = l.SymptomsDetails,
-            //            Diagnosis = l.Diagnosis,
-            //            Recomendations = l.Recomendations,
-            //            ReferralForConsultation = l.ReferralForConsultation,
-            //            InstrumentalOrLaboratoryTests = l.InstrumentalOrLaboratoryTests,
-            //            Procedures = l.Procedures
-            //        }).Where(c => c.PatientId == p.PatientId && c.DoctorId == doctor.DoctorId);
-            //        PatientsList.ItemsSource = list.ToList();
-            //    }
-            //};
             using (ClinicContext db = new())
             {
                 Patient p = db.Patients.Where(p => p.MedicalCard == PatientMedicalCard_TextBox.Text).FirstOrDefault()!;
@@ -119,11 +94,15 @@ namespace wswpf
         private void PatientsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             string? item = PatientsList.SelectedItem.ToString();
-            item=item!.Replace("{", "").Trim();
+            item = item!.Replace("{", "").Trim();
             item = item!.Replace("}", "").Trim();
             int index = int.Parse(item.Split(",")[0].Split("=")[1].Trim());
-            PatientEditWindow window = new PatientEditWindow(index, doctor); 
+            PatientEditWindow window = new PatientEditWindow(index, doctor);
+            if (window.ShowDialog() == true)
+            {
+                LoadUpdate();
+            }
         }
     }
- }
+}
 
