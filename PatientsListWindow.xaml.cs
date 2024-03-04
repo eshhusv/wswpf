@@ -96,7 +96,14 @@ namespace wswpf
             string? item = PatientsList.SelectedItem.ToString();
             item = item!.Replace("{", "").Trim();
             item = item!.Replace("}", "").Trim();
-            int index = int.Parse(item.Split(",")[0].Split("=")[1].Trim());
+
+            string[] mas = item.Split(",");
+            int index = -1;
+            for (int i = 0; i < mas.Length; i++)
+            {
+                if (mas[i].StartsWith(" AppointmentId")) index = i;
+            }
+            index = int.Parse(mas[index].Split("=")[1]);
             PatientEditWindow window = new PatientEditWindow(index, doctor);
             if (window.ShowDialog() == true)
             {

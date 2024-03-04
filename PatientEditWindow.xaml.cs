@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,20 @@ namespace wswpf
         public PatientEditWindow()
         {
             InitializeComponent();
+            using (ClinicContext db = new ClinicContext())
+            {
+                tbAnamnesis.Text = reception.Anamnesis;
+                tbDiagnosis.Text = reception.Diagnosis;
+                tbInstrumentalOrLaboratoryTests.Text = reception.InstrumentalOrLaboratoryTests;
+                tbProcedures.Text = reception.Procedures;
+                tbRecomendations.Text = reception.Recomendations;
+                tbReferralForConsultation.Text = reception.ReferralForConsultation;
+                tbSymptomsDetails.Text = reception.SymptomsDetails;
+                List<Recipe> recipes = db.Recipes.Where(p => p.AppointmentId == reception.AppointmentId).ToList();
+                RecipeList.ItemsSource = recipes;
+                if (recipes.Count == 10)
+                    AddRecipe.Visibility = Visibility.Hidden;
+            }
         }
         public PatientEditWindow(int index, Doctor doctor)
         {
@@ -40,20 +56,26 @@ namespace wswpf
                 RecipeList.ItemsSource = recipes;
                 if (recipes.Count == 10)
                     AddRecipe.Visibility = Visibility.Hidden;
+                else
+                    AddRecipe.Visibility = Visibility.Visible;
             }
         }
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string? item = RecipeList.SelectedItem.ToString();
-            item = item!.Replace("{", "").Trim();
-            item = item!.Replace("}", "").Trim();
-            string name = item.Split(",")[0].Split("=")[1].Trim();
-
-            RecipeEditWindow recipeEditWindow = new(name);
+            Recipe? item = RecipeList.SelectedItem as Recipe;
+            RecipeEditWindow recipeEditWindow = new(item);
             if (recipeEditWindow.ShowDialog() == true)
             {
-
+                using (ClinicContext db = new ClinicContext())
+                {
+                    List<Recipe> recipes = db.Recipes.Where(p => p.AppointmentId == reception.AppointmentId).ToList();
+                    RecipeList.ItemsSource = recipes;
+                    if (recipes.Count == 10)
+                        AddRecipe.Visibility = Visibility.Hidden;
+                    else
+                        AddRecipe.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -74,6 +96,10 @@ namespace wswpf
                     RecipeList.ItemsSource = null;
                     List<Recipe> recipes = db.Recipes.Where(p => p.AppointmentId == reception.AppointmentId).ToList();
                     RecipeList.ItemsSource = recipes;
+                    if (recipes.Count == 10)
+                        AddRecipe.Visibility = Visibility.Hidden;
+                    else
+                        AddRecipe.Visibility = Visibility.Visible;
                 }
             }
         }

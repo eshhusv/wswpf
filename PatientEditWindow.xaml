@@ -67,7 +67,7 @@
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="220">Название</GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Dosage}" Width="150">Дозировка</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Format}" Width="300">Формат приёма</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Format}" Width="280">Формат приёма</GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

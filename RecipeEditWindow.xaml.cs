@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,15 +23,14 @@ namespace wswpf
         {
             InitializeComponent();
         }
-        public RecipeEditWindow(string name)
+        public RecipeEditWindow(Recipe item)
         {
-            using(ClinicContext db = new())
-            {
-                recipe = db.Recipes.Where(r=> r.Name == name).FirstOrDefault();
-                tbName.Text = recipe.Name;
-                tbDosage.Text = recipe.Dosage.ToString();
-                tbFormat.Text = recipe.Format;
-            }
+            InitializeComponent();
+            tbName.Text = item.Name;
+            tbDosage.Text = item.Dosage.ToString();
+            tbFormat.Text = item.Format;
+            DeleteRecipe.Visibility = Visibility.Visible;
+            recipe = item;
         }
         public string NamePrep
         {
@@ -55,6 +55,16 @@ namespace wswpf
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void DeleteRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            using(ClinicContext db = new())
+            {
+                db.Recipes.Remove(recipe);
+                db.SaveChanges();
+            }
+            DialogResult = true;
         }
     }
 }
